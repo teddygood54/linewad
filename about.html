@@ -27,6 +27,12 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <!-- Logout Button -->
+<div class="logout-container">
+    <button id="logoutButton" class="btn btn-danger">ออกจากระบบ</button>
+</div>
+
     </head>
 
     <body>
@@ -63,28 +69,30 @@
         </div>
         <!-- Topbar End -->
 
-         <!-- Navbar & Hero Start -->
-<div class="container-fluid nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a href="index.html" class="navbar-brand p-0">
-                <h1 class="display-6 text-primary">คลินิคทันตกรรม</h1>
-                <!-- <img src="img/Appointment.png" alt="Logo"> -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav mx-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">หน้าแรก</a>
-                    <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
-                    <a href="service.html" class="nav-item nav-link">บริการ</a>
-                    <a href="contact.html" class="nav-item nav-link">ติดต่อเรา</a>
-              
-        </nav>
-    </div>
+       <!-- Navbar Start -->
+<div class="container-fluid bg-light p-0">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>คลินิคทันตกรรม</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="index.html" class="nav-item nav-link active">หน้าแรก</a>
+                <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
+                <a href="service.html" class="nav-item nav-link">บริการ</a>
+                <a href="contact.html" class="nav-item nav-link">ติดต่อเรา</a>
+            
+            </div>
+            <div class="d-none d-lg-flex align-items-center" id="memberInfo" style="margin-left: 10px;">
+                <!-- Member info will be displayed here -->
+            </div>
+        </div>
+    </nav>
 </div>
-<!-- Navbar & Hero End -->
+<!-- Navbar End -->
 
 
         <!-- Header Start -->
@@ -396,6 +404,40 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load saved data from Local Storage
+            const savedName = localStorage.getItem("fullName");
+    
+            // Display member info in the top-right corner
+            const memberInfoDiv = document.getElementById("memberInfo");
+            if (savedName) {
+                memberInfoDiv.innerHTML = `<span class="text-dark">ยินดีต้อนรับ, ${savedName}</span>`;
+            } else {
+                memberInfoDiv.innerHTML = `<span class="text-dark">ยินดีต้อนรับ, สมาชิกใหม่</span>`;
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const logoutButton = document.getElementById("logoutButton");
+    
+            if (logoutButton) {
+                logoutButton.addEventListener("click", function() {
+                    // Remove member data from Local Storage
+                    localStorage.removeItem("fullName");
+                    localStorage.removeItem("phoneNumber");
+    
+                    // Optionally, redirect to login page or homepage
+                    window.location.href = "/login.html"; // Change this URL to your login page or homepage
+                });
+            }
+        });
+    </script>
+    
+    
     </body>
 
 </html>

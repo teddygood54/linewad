@@ -27,6 +27,12 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <!-- Logout Button -->
+<div class="logout-container">
+    <button id="logoutButton" class="btn btn-danger">ออกจากระบบ</button>
+</div>
+
     </head>
 
     <body>
@@ -63,29 +69,30 @@
         </div>
         <!-- Topbar End -->
 
-        <!-- Navbar & Hero Start -->
-<div class="container-fluid nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a href="index.html" class="navbar-brand p-0">
-                <h1 class="display-6 text-primary">คลินิคทันตกรรม</h1>
-                <!-- <img src="img/Appointment.png" alt="Logo"> -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav mx-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">หน้าแรก</a>
-                    <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
-                    <a href="service.html" class="nav-item nav-link">บริการ</a>
-                    <a href="contact.html" class="nav-item nav-link">ติดต่อเรา</a>
-                
-        </nav>
-    </div>
+        <!-- Navbar Start -->
+<div class="container-fluid bg-light p-0">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>คลินิคทันตกรรม</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="index.html" class="nav-item nav-link active">หน้าแรก</a>
+                <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
+                <a href="service.html" class="nav-item nav-link">บริการ</a>
+                <a href="contact.html" class="nav-item nav-link">ติดต่อเรา</a>
+            
+            </div>
+            <div class="d-none d-lg-flex align-items-center" id="memberInfo" style="margin-left: 10px;">
+                <!-- Member info will be displayed here -->
+            </div>
+        </div>
+    </nav>
 </div>
-<!-- Navbar & Hero End -->
-
+<!-- Navbar End -->
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
@@ -98,11 +105,81 @@
         </div>
         <!-- Header End -->
 
-       <!-- Services Start -->
+      <!-- Appointment Confirmation Start -->
+<div class="container py-5" id="appointmentConfirmationContainer" style="display: none;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="bg-light rounded p-4 p-sm-5">
+                <h2 class="text-center mb-4">ยืนยันการนัดหมาย</h2>
+                <div id="appointmentDetails">
+                    <!-- Appointment details will be injected here -->
+                </div>
+                <button id="newAppointmentButton" class="btn btn-primary w-100 py-2 mt-4">จองคิวใหม่</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment Confirmation End -->
+
+<!-- Appointment Form Start -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="bg-light rounded p-4 p-sm-5">
+                <h2 class="text-center mb-4">ใบนัดหมายจองคิว</h2>
+                <form id="appointmentForm">
+                    <div class="row g-3">
+                        <!-- Hidden Fields to Automatically Populate from Membership Info -->
+                        <input type="hidden" id="fullNameHidden" value="">
+                        <input type="hidden" id="phoneNumberHidden" value="">
+
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-user"></span></span>
+                                <input type="text" class="form-control" id="appointmentName" placeholder="ชื่อ-นามสกุล" aria-label="Full Name" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-phone"></span></span>
+                                <input type="text" class="form-control" id="appointmentPhone" placeholder="เบอร์โทรศัพท์" aria-label="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select" id="serviceType" aria-label="เลือกบริการ" required>
+                                <option selected>เลือกบริการ</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Dental Cleaning">Dental Cleaning</option>
+                                <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+                                <option value="Root Canal Treatment">Root Canal Treatment</option>
+                                <option value="Orthodontics">Orthodontics</option>
+                                <option value="Dental Implants">Dental Implants</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-calendar-alt"></span></span>
+                                <input type="date" class="form-control" id="appointmentDate" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 py-2">จองคิว</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment Form End -->
+
+
+<!-- Services Start -->
 <div class="container-fluid service py-5">
     <div class="container py-5">
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <!-- Service Items -->
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.1s" data-service="Consultation">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-user-md fa-2x"></i>
@@ -111,7 +188,7 @@
                     <p class="mb-0">ให้คำปรึกษาด้านทันตกรรมโดยทีมแพทย์ผู้เชี่ยวชาญ เพื่อให้คุณได้คำแนะนำที่ถูกต้องและเหมาะสมกับสภาพฟันของคุณ.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.3s" data-service="Dental Cleaning">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-tooth fa-2x"></i>
@@ -120,7 +197,7 @@
                     <p class="mb-0">บริการขูดหินปูนและทำความสะอาดฟันเพื่อสุขภาพฟันและเหงือกที่ดี.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.5s" data-service="Cosmetic Dentistry">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-smile fa-2x"></i>
@@ -129,7 +206,7 @@
                     <p class="mb-0">บริการทันตกรรมเพื่อความงาม เช่น ฟอกฟันขาว การจัดฟัน และการเคลือบฟัน เพื่อให้คุณมีรอยยิ้มที่มั่นใจ.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.1s" data-service="Root Canal Treatment">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-syringe fa-2x"></i>
@@ -138,7 +215,7 @@
                     <p class="mb-0">การรักษารากฟันเพื่อบรรเทาอาการปวดและช่วยรักษาฟันที่ติดเชื้อ.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.3s" data-service="Orthodontics">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-teeth fa-2x"></i>
@@ -147,7 +224,7 @@
                     <p class="mb-0">บริการจัดฟันสำหรับทุกวัย เพื่อปรับปรุงการเรียงตัวของฟันและการสบฟัน.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="col-md-6 col-lg-4 wow fadeInUp service-select" data-wow-delay="0.5s" data-service="Dental Implants">
                 <div class="service-item p-4">
                     <div class="service-icon mb-4">
                         <i class="fa fa-wheelchair fa-2x"></i>
@@ -160,6 +237,65 @@
     </div>
 </div>
 <!-- Services End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Populate the appointment form with member data
+        const memberName = document.getElementById("fullName").value;
+        const memberPhone = document.getElementById("phoneNumber").value;
+
+        document.getElementById("fullNameHidden").value = memberName;
+        document.getElementById("phoneNumberHidden").value = memberPhone;
+
+        document.getElementById("appointmentName").value = memberName;
+        document.getElementById("appointmentPhone").value = memberPhone;
+
+        // Handle service item click
+        document.querySelectorAll('.service-select').forEach(item => {
+            item.addEventListener('click', function() {
+                const selectedService = this.getAttribute('data-service');
+                document.getElementById('serviceType').value = selectedService;
+                document.getElementById('appointmentFormContainer').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('appointmentFormContainer').style.display = 'block';
+            });
+        });
+
+        // Handle appointment form submission
+        document.getElementById("appointmentForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            // Collect the data from the form
+            const name = document.getElementById("appointmentName").value;
+            const phone = document.getElementById("appointmentPhone").value;
+            const service = document.getElementById("serviceType").value;
+            const date = document.getElementById("appointmentDate").value;
+
+            // Display appointment confirmation
+            const confirmationHtml = `
+                <p><strong>ชื่อ-นามสกุล:</strong> ${name}</p>
+                <p><strong>เบอร์โทรศัพท์:</strong> ${phone}</p>
+                <p><strong>บริการ:</strong> ${service}</p>
+                <p><strong>วันที่จอง:</strong> ${date}</p>
+            `;
+            document.getElementById("appointmentDetails").innerHTML = confirmationHtml;
+
+            // Hide form and show confirmation
+            document.getElementById("appointmentFormContainer").style.display = "none";
+            document.getElementById("appointmentConfirmationContainer").style.display = "block";
+        });
+
+        // Handle new appointment button click
+        document.getElementById("newAppointmentButton").addEventListener("click", function() {
+            // Reset form
+            document.getElementById("appointmentForm").reset();
+
+            // Show form and hide confirmation
+            document.getElementById("appointmentConfirmationContainer").style.display = "none";
+            document.getElementById("appointmentFormContainer").style.display = "block";
+        });
+    });
+</script>
+
 
 
         <!-- Testimonial Start -->
@@ -310,6 +446,120 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load saved data from Local Storage
+            const savedName = localStorage.getItem("fullName");
+    
+            // Display member info in the top-right corner
+            const memberInfoDiv = document.getElementById("memberInfo");
+            if (savedName) {
+                memberInfoDiv.innerHTML = `<span class="text-dark">ยินดีต้อนรับ, ${savedName}</span>`;
+            } else {
+                memberInfoDiv.innerHTML = `<span class="text-dark">ยินดีต้อนรับ, สมาชิกใหม่</span>`;
+            }
+        });
+    </script>
+    <!-- Appointment Form Start -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="bg-light rounded p-4 p-sm-5">
+                <h2 class="text-center mb-4">ใบนัดหมายจองคิว</h2>
+                <form id="appointmentForm">
+                    <div class="row g-3">
+                        <!-- Hidden Fields to Automatically Populate from Membership Info -->
+                        <input type="hidden" id="fullNameHidden" value="">
+                        <input type="hidden" id="phoneNumberHidden" value="">
+
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-user"></span></span>
+                                <input type="text" class="form-control" id="appointmentName" placeholder="ชื่อ-นามสกุล" aria-label="Full Name" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-phone"></span></span>
+                                <input type="text" class="form-control" id="appointmentPhone" placeholder="เบอร์โทรศัพท์" aria-label="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select" id="serviceType" aria-label="เลือกบริการ" required>
+                                <option selected>เลือกบริการ</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Dental Cleaning">Dental Cleaning</option>
+                                <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+                                <option value="Root Canal Treatment">Root Canal Treatment</option>
+                                <option value="Orthodontics">Orthodontics</option>
+                                <option value="Dental Implants">Dental Implants</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-body"><span class="fas fa-calendar-alt"></span></span>
+                                <input type="date" class="form-control" id="appointmentDate" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 py-2">จองคิว</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment Form End -->
+
+<!-- Script to Handle Form Population and Submission -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Load saved data from Local Storage
+        const savedName = localStorage.getItem("fullName");
+        const savedPhone = localStorage.getItem("phoneNumber");
+
+        // Populate the appointment form with saved data
+        if (savedName) {
+            document.getElementById("appointmentName").value = savedName;
+            document.getElementById("fullNameHidden").value = savedName;
+        }
+
+        if (savedPhone) {
+            document.getElementById("appointmentPhone").value = savedPhone;
+            document.getElementById("phoneNumberHidden").value = savedPhone;
+        }
+
+        // Handle appointment form submission
+        document.getElementById("appointmentForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const serviceName = document.getElementById("serviceType").value;
+            const appointmentDate = document.getElementById("appointmentDate").value;
+            alert(`คุณได้ทำการจองคิวสำหรับ ${serviceName} ในวันที่ ${appointmentDate} แล้ว!`);
+            
+            // Optionally, save the appointment details to Local Storage or send to server
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const logoutButton = document.getElementById("logoutButton");
+
+        if (logoutButton) {
+            logoutButton.addEventListener("click", function() {
+                // Remove member data from Local Storage
+                localStorage.removeItem("fullName");
+                localStorage.removeItem("phoneNumber");
+
+                // Optionally, redirect to login page or homepage
+                window.location.href = "/login.html"; // Change this URL to your login page or homepage
+            });
+        }
+    });
+</script>
+
+
     </body>
 
 </html>
